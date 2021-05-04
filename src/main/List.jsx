@@ -7,7 +7,7 @@ import { useHistory } from 'react-router';
 import { Page, Content, Margin } from '../page/page.style';
 
 export const Header = styled.div`
-width:100vw;
+width:${({width})=>width}vw;
 height:6rem;
 background:white;
 display: flex;
@@ -104,20 +104,20 @@ const MailList = ({width}) => {
         dispatch({type:'SET_TORIGHT',toright:true});
         history.push('/menu');
     }
-    const onClickNew = () => {
+    const onClickThread = () => {
         dispatch({type:'SET_TORIGHT',toright:false});
         history.push('/mail');
     }
 
     return (
-        <Page width={width}>
+        <Page width={width} >
             <Margin/>
             <Content>
                 <List
                     itemLayout="horizontal"
                     dataSource={data}
                     renderItem={item => (
-                        <List.Item style={{ padding: `0.6rem 1.5rem` }} onClick={onClickNew}>
+                        <List.Item style={{ padding: `0.6rem 1.5rem` }} onClick={onClickThread}>
                             <List.Item.Meta
                                 title={item.title}
                                 description={item.description}
@@ -126,10 +126,10 @@ const MailList = ({width}) => {
                     )}
                 />
             </Content>
-            <Header>
+            <Header width={width}>
                 <Button onClick={onClickMenu}>{<MenuOutlined />}</Button>
                 <MailBoxName>받은 편지함</MailBoxName>
-                <Button onClick={onClickNew}>{<EditOutlined />}</Button>
+                <Button onClick={()=>alert('write new email')}>{<EditOutlined />}</Button>
             </Header>
         </Page>
 

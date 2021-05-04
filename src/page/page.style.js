@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Page = styled.div`
+display:inline-block;
 height:100vh;
 width:${({width})=>width}vw;
 margin:0;

@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useState } from 'react';
+import React, { createContext, useEffect, useReducer, useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import '../../node_modules/antd/dist/antd.css';
 import { BrowserRouter, useHistory } from 'react-router-dom';
@@ -15,14 +15,14 @@ html,body{
 `;
 
 const initialState = {
-    toright:true,
+    toright: true,
 }
 const reducer = (state, action) => {
     switch (action.type) {
         case 'SET_TORIGHT':
             return {
                 ...state,
-                toright:action.toright,
+                toright: action.toright,
             }
     }
 }
@@ -32,7 +32,7 @@ export const MailAppContext = createContext({});
 const Main = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    const {toright} = state
+    const { toright } = state
     const value = { dispatch, toright }
 
     return (
@@ -40,7 +40,7 @@ const Main = () => {
             <GlobalStyle />
             <MailAppContext.Provider value={value}>
                 <BrowserRouter>
-                    <PC/>
+                {window.matchMedia("(min-width: 800px)").matches?<PC />:<Mobile/>}
                 </BrowserRouter>
             </MailAppContext.Provider>
         </>

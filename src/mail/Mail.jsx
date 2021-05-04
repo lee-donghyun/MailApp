@@ -73,7 +73,7 @@ const Mail = ({width}) => {
                     <MContent>{mail.content}</MContent>
                 </Letter>
             </Content>
-            <Header>
+            <Header width={width}>
                 <Button onClick={onClickBack}><ArrowLeftOutlined /></Button>
                 <Button onClick={onClickDelete}><DeleteOutlined /></Button>
             </Header>

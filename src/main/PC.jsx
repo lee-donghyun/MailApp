@@ -14,27 +14,7 @@ const PC = () => {
 
     return (
         <>
-            <Route exact path='/'>
-                {({ match }) => (
-                    <Transition
-                        in={match != null}
-                        timeout={500}
-                    >
-                        {(state) => {
-                            if (!toright) return (
-                                <ToRight state={state}>
-                                    <MailList width={100} />
-                                </ToRight>
-                            );
-                            else return (
-                                <ToLeft state={state}>
-                                    <MailList width={100} />
-                                </ToLeft>
-                            );
-                        }}
-                    </Transition>
-                )}
-            </Route>
+            <MailList width={40} />
             <Route exact path='/menu'>
                 {({ match }) => (
                     <Transition
@@ -43,26 +23,13 @@ const PC = () => {
                     >
                         {(state) => (
                             <ToRight state={state}>
-                                <Menu width={100} />
+                                <Menu width={40} />
                             </ToRight>
                         )}
                     </Transition>
                 )}
             </Route>
-            <Route exact path='/mail'>
-                {({ match }) => (
-                    <Transition
-                        in={match != null}
-                        timeout={500}
-                    >
-                        {(state) => (
-                            <ToLeft state={state}>
-                                <Mail width={100} />
-                            </ToLeft>
-                        )}
-                    </Transition>
-                )}
-            </Route>
+            <Mail width={60} />
         </>
     );
 }
