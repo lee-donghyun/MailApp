@@ -20,7 +20,7 @@ const Mobile = () => {
 
     return (
         <MatchMedia>
-            <Route exact path='/'>
+            <Route exact path='/MailApp'>
                 {({ match }) => (
                     <Transition
                         in={match != null}
@@ -41,7 +41,7 @@ const Mobile = () => {
                     </Transition>
                 )}
             </Route>
-            <Route exact path='/menu'>
+            <Route exact path='/MailApp/menu'>
                 {({ match }) => (
                     <Transition
                         in={match != null}
@@ -55,7 +55,7 @@ const Mobile = () => {
                     </Transition>
                 )}
             </Route>
-            <Route exact path='/mail'>
+            <Route exact path='/MailApp/mail'>
                 {({ match }) => (
                     <Transition
                         in={match != null}

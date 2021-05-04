@@ -102,11 +102,11 @@ const MailList = ({width}) => {
     const history = useHistory();
     const onClickMenu = () => {
         dispatch({type:'SET_TORIGHT',toright:true});
-        history.push('/menu');
+        history.push('/MailApp/menu');
     }
     const onClickThread = () => {
         dispatch({type:'SET_TORIGHT',toright:false});
-        history.push('/mail');
+        history.push('/MailApp/mail');
     }
 
     return (

@@ -18,7 +18,7 @@ const Mail = ({width}) => {
 
     const history = useHistory();
     const onClickItem = () => {
-        history.push('/');
+        history.push('/MailApp');
     }
 
     return (

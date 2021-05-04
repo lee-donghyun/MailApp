@@ -18,7 +18,7 @@ const PC = () => {
     return (
         <MatchMedia>
             <MailList width={40} />
-            <Route exact path='/menu'>
+            <Route exact path='/MailApp/menu'>
                 {({ match }) => (
                     <Transition
                         in={match != null}

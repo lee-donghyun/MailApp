@@ -56,7 +56,7 @@ const Mail = ({width}) => {
 
     const history = useHistory();
     const onClickBack = () => {
-        history.push('/');
+        history.push('/MailApp');
     }
     const onClickDelete = () => {
         alert('deleted!');
