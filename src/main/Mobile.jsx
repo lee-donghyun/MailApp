@@ -6,14 +6,20 @@ import Mail from '../mail/Mail';
 import { Transition } from 'react-transition-group';
 import { ToLeft, ToRight } from '../transition/transition';
 import { MailAppContext } from './Main';
+import styled from 'styled-components';
 
+const MatchMedia = styled.div`
+@media (min-width: 800px){
+    display:none;
+}
+`;
 
 const Mobile = () => {
 
     const { toright } = useContext(MailAppContext);
 
     return (
-        <>
+        <MatchMedia>
             <Route exact path='/'>
                 {({ match }) => (
                     <Transition
@@ -63,7 +69,7 @@ const Mobile = () => {
                     </Transition>
                 )}
             </Route>
-        </>
+        </MatchMedia>
     );
 }
 

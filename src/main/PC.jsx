@@ -6,14 +6,17 @@ import Mail from '../mail/Mail';
 import { Transition } from 'react-transition-group';
 import { ToLeft, ToRight } from '../transition/transition';
 import { MailAppContext } from './Main';
+import styled from 'styled-components';
 
+const MatchMedia = styled.div`
+@media (max-width:800px){
+    display:none;
+}
+`;
 
 const PC = () => {
-
-    const { toright } = useContext(MailAppContext);
-
     return (
-        <>
+        <MatchMedia>
             <MailList width={40} />
             <Route exact path='/menu'>
                 {({ match }) => (
@@ -30,7 +33,7 @@ const PC = () => {
                 )}
             </Route>
             <Mail width={60} />
-        </>
+        </MatchMedia>
     );
 }
 

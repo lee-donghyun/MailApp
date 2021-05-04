@@ -40,7 +40,8 @@ const Main = () => {
             <GlobalStyle />
             <MailAppContext.Provider value={value}>
                 <BrowserRouter>
-                {window.matchMedia("(min-width: 800px)").matches?<PC />:<Mobile/>}
+                <PC />
+                <Mobile/>
                 </BrowserRouter>
             </MailAppContext.Provider>
         </>
