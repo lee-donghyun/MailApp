@@ -9,10 +9,28 @@ import { Page, Content, Margin } from '../page/page.style';
 
 const mail = {
     senter: `DongHyun Lee`,
-    title: `[깜짝 뉴스] 오늘 저녁 메뉴 소고기 `,
+    title: `[React] mail app using react hooks `,
     content: `
-    엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
-    엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
+    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+     Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
+    and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+     Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
+    and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+     Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
+    and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+     Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
+    and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+     Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
+    and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
     `
 }
 const Title = styled.span`
@@ -45,7 +63,7 @@ const Mail = () => {
     }
 
     return (
-        <Page style={{background:`#f5f5f5`}}>
+        <Page style={{ background: `#f5f5f5` }}>
             <Margin />
             <Content>
                 <Title>{mail.title}</Title>
