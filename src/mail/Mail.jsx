@@ -1,22 +1,16 @@
-import { Layout, Divider  } from 'antd';
-const { Content } = Layout;
+import { Divider } from 'antd';
 import React from 'react';
 import { Header, Button } from '../main/List';
 import { ArrowLeftOutlined, DeleteOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
+import { Page, Content, Margin } from '../page/page.style';
 
 
 const mail = {
     senter: `DongHyun Lee`,
     title: `[깜짝 뉴스] 오늘 저녁 메뉴 소고기 `,
     content: `
-    엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
-    엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
-    엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
-    엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
-    엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
-    엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
     엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
     엄청 맛잇게 먹을 것으로 예상이 되ㅡ는 가운데 나느 지굼 배가 엄청나게 고프다.. 빨리 저녁먹고싶어.. 2021년 화아이팅
     `
@@ -51,13 +45,9 @@ const Mail = () => {
     }
 
     return (
-        <Layout style={{ width: `100vw`, height: `100vh` }}>
-            <Content style={
-                {
-                    position: `relative`,
-                    top: `7rem`,
-                }
-            }>
+        <Page style={{background:`#f5f5f5`}}>
+            <Margin />
+            <Content>
                 <Title>{mail.title}</Title>
                 <Letter>
                     <Senter>{mail.senter}</Senter>2일전
@@ -69,7 +59,7 @@ const Mail = () => {
                 <Button onClick={onClickBack}><ArrowLeftOutlined /></Button>
                 <Button onClick={onClickDelete}><DeleteOutlined /></Button>
             </Header>
-        </Layout>
+        </Page>
     );
 }
 

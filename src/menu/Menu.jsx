@@ -4,12 +4,14 @@ const { Sider } = Layout;
 import { Menu } from 'antd';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
+import { Page } from '../page/page.style';
 const { SubMenu } = Menu;
 
 const UserName = styled.span`
 padding:2rem;
 font-size:2rem;
 background:white;
+display:block;
 `;
 
 const Mail = () => {
@@ -20,7 +22,8 @@ const Mail = () => {
     }
 
     return (
-            <Layout style={{ width: `100vw`, height: `100vh` }} >
+            // <Layout style={{ width: `100vw`, height: `100vh` }} >
+                <Page>
                 <UserName>DongHyun Lee</UserName>
                 <Menu mode="inline">
                     <SubMenu key="sub1" title="받은 메일함">
@@ -41,7 +44,8 @@ const Mail = () => {
                         <Menu.Item key="11">스팸함</Menu.Item>
                     </SubMenu>
                 </Menu>
-            </Layout>
+                </Page>
+            // {/* </Layout> */}
     );
 }
 

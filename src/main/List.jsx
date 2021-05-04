@@ -1,10 +1,10 @@
-import { Layout, List } from 'antd';
-const { Footer, Sider, Content } = Layout;
+import { List } from 'antd';
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { MailAppContext } from './Main';
 import { MenuOutlined, EditOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router';
+import { Page, Content, Margin } from '../page/page.style';
 
 export const Header = styled.div`
 width:100vw;
@@ -14,6 +14,7 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 position:fixed;
+top:0;
 margin:0;
 padding:0;
 opacity:0.8;
@@ -36,7 +37,7 @@ opacity:1;
 
 const MailList = () => {
 
-    
+
     const data = [
         {
             title: '보낸사람 : 도착한 메일!',
@@ -75,7 +76,7 @@ const MailList = () => {
             description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
         },
     ];
-    
+
     const history = useHistory();
     const onClickMenu = () => {
         history.push('/menu');
@@ -85,14 +86,9 @@ const MailList = () => {
     }
 
     return (
-        <Layout style={{ height: `100vh`, width: `100vw`, background:`white`}}>
-            <Content style={
-                {
-                    background: `white`,
-                    position: `relative`,
-                    top:`6rem`
-                }
-            }>
+        <Page>
+            <Margin/>
+            <Content>
                 <List
                     itemLayout="horizontal"
                     dataSource={data}
@@ -111,7 +107,8 @@ const MailList = () => {
                 <MailBoxName>받은 편지함</MailBoxName>
                 <Button onClick={onClickNew}>{<EditOutlined />}</Button>
             </Header>
-        </Layout>
+        </Page>
+
     );
 }
 
