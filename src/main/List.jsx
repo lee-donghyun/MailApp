@@ -35,58 +35,82 @@ opacity:1;
 `;
 
 
-const MailList = () => {
+const MailList = ({width}) => {
 
 
     const data = [
         {
-            title: '보낸사람 : 도착한 메일!',
-            description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
         },
         {
-            title: '보낸사람 : 도착한 메일!',
-            description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
         },
         {
-            title: '보낸사람 : 도착한 메일!',
-            description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
         },
         {
-            title: '보낸사람 : 도착한 메일!',
-            description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
         },
         {
-            title: '보낸사람 : 도착한 메일!',
-            description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
         },
         {
-            title: '보낸사람 : 도착한 메일!',
-            description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
         },
         {
-            title: '보낸사람 : 도착한 메일!',
-            description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
         },
         {
-            title: '보낸사람 : 도착한 메일!',
-            description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
         },
         {
-            title: '보낸사람 : 도착한 메일!',
-            description: '여기에는 도착한 메일에 대한 미리보기가 있습니다. 아주 근사한 기능입니다. 하하 그리고 클릭하면 알림이 뜹니다.'
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
+        },
+        {
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
+        },
+        {
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
+        },
+        {
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
+        },
+        {
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
+        },
+        {
+            title: '[React] About React Hooks and Media Query',
+            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
         },
     ];
 
+    const { dispatch } = useContext(MailAppContext);
+
     const history = useHistory();
     const onClickMenu = () => {
+        dispatch({type:'SET_TORIGHT',toright:true});
         history.push('/menu');
     }
     const onClickNew = () => {
+        dispatch({type:'SET_TORIGHT',toright:false});
         history.push('/mail');
     }
 
     return (
-        <Page>
+        <Page width={width}>
             <Margin/>
             <Content>
                 <List

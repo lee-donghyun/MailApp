@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const Page = styled.div`
 height:100vh;
-width:100vw;
+width:${({width})=>width}vw;
 margin:0;
 padding:0;
 overflow:scroll;
-// background:red;
+overflow-x:hidden;
+background:white;
 `;
 
 export const Content = styled.div`
@@ -19,5 +20,5 @@ export const Margin = styled.div`
 margin:0;
 padding:0;
 height:6rem;
-width:100vw;
+width:100%;
 `;

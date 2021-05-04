@@ -52,7 +52,7 @@ const MContent = styled.p`
 font-size:1.4rem;
 `;
 
-const Mail = () => {
+const Mail = ({width}) => {
 
     const history = useHistory();
     const onClickBack = () => {
@@ -63,7 +63,7 @@ const Mail = () => {
     }
 
     return (
-        <Page style={{ background: `#f5f5f5` }}>
+        <Page width={width} style={{ background: `#f5f5f5` }}>
             <Margin />
             <Content>
                 <Title>{mail.title}</Title>
