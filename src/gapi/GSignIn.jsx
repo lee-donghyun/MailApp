@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GoogleCircleFilled } from '@ant-design/icons';
 import styled from 'styled-components';
-import { signInGoogle } from './gmail';
+import { getInbox, signInGoogle, updateListData } from './gmail';
+import { MailAppContext } from '../main/Main';
 
 
 const Button = styled.button`
@@ -16,7 +17,17 @@ border: none;
 `;
 
 const GSignIn = () => {
-    return <Button onClick={signInGoogle}><GoogleCircleFilled /></Button>
+
+    const {dispatch}=useContext(MailAppContext);
+
+    const onClickButton = async() => {
+        await signInGoogle();
+        await getInbox();
+        await updateListData();
+        dispatch({type:'SET_GSIGNIN',gSignIn:true});
+    }
+
+    return <Button onClick={onClickButton}><GoogleCircleFilled /></Button>
 }
 
 export default GSignIn;

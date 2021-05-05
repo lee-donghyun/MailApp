@@ -20,6 +20,8 @@ html,body{
 
 const initialState = {
     toright: true,
+    reading: 0,
+    gSignIn: false,
 }
 const reducer = (state, action) => {
     switch (action.type) {
@@ -27,6 +29,16 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 toright: action.toright,
+            }
+        case 'SET_READING':
+            return {
+                ...state,
+                reading: action.reading,
+            }
+        case 'SET_GSIGNIN':
+            return {
+                ...state,
+                gSignIn: action.gSignIn,
             }
     }
 }
@@ -36,22 +48,21 @@ export const MailAppContext = createContext({});
 const Main = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { toright } = state
-    const value = { dispatch, toright }
+    const { toright, reading, gSignIn } = state;
+    const value = { dispatch, toright, reading, gSignIn };
 
-    useEffect(()=>{
+    useEffect(() => {
         initGAPI();
-        console.log('initial render');
-    },[]);
+    }, []);
 
     return (
         <>
             <GlobalStyle />
             <MailAppContext.Provider value={value}>
                 <BrowserRouter>
-                <PC />
-                <Mobile/>
-                <GSignIn/>
+                    <PC />
+                    <Mobile />
+                    <GSignIn />
                 </BrowserRouter>
             </MailAppContext.Provider>
         </>

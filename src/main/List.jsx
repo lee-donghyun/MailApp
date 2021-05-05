@@ -5,9 +5,10 @@ import { MailAppContext } from './Main';
 import { MenuOutlined, EditOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router';
 import { Page, Content, Margin } from '../page/page.style';
+import { listData } from '../gapi/gmail';
 
 export const Header = styled.div`
-width:${({width})=>width}vw;
+width:${({ width }) => width}vw;
 height:6rem;
 background:white;
 display: flex;
@@ -35,91 +36,47 @@ opacity:1;
 `;
 
 
-const MailList = ({width}) => {
+const MailList = ({ width }) => {
 
-
-    const data = [
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-        {
-            title: '[React] About React Hooks and Media Query',
-            description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-        },
-    ];
-
-    const { dispatch } = useContext(MailAppContext);
+    const { dispatch, gSignIn } = useContext(MailAppContext);
 
     const history = useHistory();
     const onClickMenu = () => {
-        dispatch({type:'SET_TORIGHT',toright:true});
+        dispatch({ type: 'SET_TORIGHT', toright: true });
         history.push('/MailApp/menu');
     }
-    const onClickThread = () => {
-        dispatch({type:'SET_TORIGHT',toright:false});
+    const onClickThread = (index) => {
+        dispatch({ type: 'SET_TORIGHT', toright: false });
+        dispatch({type:'SET_READING',reading:index});
         history.push('/MailApp/mail');
+    }
+    
+    let data;
+    if (!gSignIn) {//if not signed in, show dummy data
+        data = [
+            {
+                title: 'About React Hooks and Media Query',
+                senter:'React',
+                date:'Now',
+                description: 'Mail App using react hooks and Media Query, responsive to viewport size'
+            },
+        ];
+    }
+    else {
+        data = listData;
     }
 
     return (
         <Page width={width} >
-            <Margin/>
+            <Margin />
             <Content>
                 <List
                     itemLayout="horizontal"
                     dataSource={data}
-                    renderItem={item => (
-                        <List.Item style={{ padding: `0.6rem 1.5rem` }} onClick={onClickThread}>
+                    renderItem={(item, index) => (
+                        <List.Item style={{ padding: `0.6rem 1.5rem` }} onClick={()=>onClickThread(index)}>
                             <List.Item.Meta
-                                title={item.title}
+                                title={`[`+item.senter+`] `+item.title} 
                                 description={item.description}
                             />
                         </List.Item>
@@ -129,7 +86,7 @@ const MailList = ({width}) => {
             <Header width={width}>
                 <Button onClick={onClickMenu}>{<MenuOutlined />}</Button>
                 <MailBoxName>받은 편지함</MailBoxName>
-                <Button onClick={()=>alert('write new email')}>{<EditOutlined />}</Button>
+                <Button onClick={() => alert('write new email')}>{<EditOutlined />}</Button>
             </Header>
         </Page>
 
