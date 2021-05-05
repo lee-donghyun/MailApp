@@ -1,6 +1,6 @@
 # Mail App
 ## 1. 설명
-React Hooks를 사용한 메일 앱입니다. 
+React Hooks를 사용한 메일 앱입니다. Media Query로 반응형 웹을 구현합니다.
 Gmail API를 활용합니다. (Demo : [Mail App](https://lee-donghyun.github.io/MailApp/)) 
 
 ## 2. 사용 기술
@@ -13,11 +13,11 @@ Gmail API를 활용합니다. (Demo : [Mail App](https://lee-donghyun.github.io/
 | styled-components | CSS-in-JS |
 | ant-design| Menu, icon등 디자인 컴포넌트 |
 
-## 3. REST API
+## 3. Google API
 | func | 설명 |
 |--|--|
-| init(userid, ... ) | Google Cloud API 초기화 |
+| initClient() | Google Cloud API 초기화 |
+| getInbox() | 'messages.id' inbox[]저장 |
+| updateListData() | inbox[] id값으로 리소스 서버에 데이터 요청 |
 
-## 4. components
-
-
+## 4. 실행 화면
