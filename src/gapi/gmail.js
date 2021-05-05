@@ -67,13 +67,16 @@ export const updateListData = async () => {
                 date = obj['value'];
             }
         }
-        const description = data['snippet'].slice(0, 80);
+        const description = data['snippet'];
+        const content = data['payload']['body']['data'];
+        // const content = 'c29tZXRoaW5nIHdlbnQgd3Jvbmc=';
 
         listData.push({
             title: title,
             senter: senter,
             date: date,
             description: description,
+            content:content,
         });
         console.log('pushed one');
     }

@@ -6,6 +6,7 @@ import { MenuOutlined, EditOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router';
 import { Page, Content, Margin } from '../page/page.style';
 import { listData } from '../gapi/gmail';
+import sampleMail from '../sampledata/sampledata';
 
 export const Header = styled.div`
 width:${({ width }) => width}vw;
@@ -53,14 +54,7 @@ const MailList = ({ width }) => {
     
     let data;
     if (!gSignIn) {//if not signed in, show dummy data
-        data = [
-            {
-                title: 'About React Hooks and Media Query',
-                senter:'React',
-                date:'Now',
-                description: 'Mail App using react hooks and Media Query, responsive to viewport size'
-            },
-        ];
+        data = sampleMail;
     }
     else {
         data = listData;
@@ -77,7 +71,7 @@ const MailList = ({ width }) => {
                         <List.Item style={{ padding: `0.6rem 1.5rem` }} onClick={()=>onClickThread(index)}>
                             <List.Item.Meta
                                 title={`[`+item.senter+`] `+item.title} 
-                                description={item.description}
+                                description={item.description.slice(0,80)}
                             />
                         </List.Item>
                     )}
