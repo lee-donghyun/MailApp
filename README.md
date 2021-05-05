@@ -21,3 +21,5 @@ Gmail API를 활용합니다. (Demo : [Mail App](https://lee-donghyun.github.io/
 | updateListData() | inbox[] id값으로 리소스 서버에 데이터 요청 |
 
 ## 4. 실행 화면
+<img src='https://user-images.githubusercontent.com/62923776/117198953-982be000-ae24-11eb-972f-012a3208a238.gif' height='500px'/>
+<img src='https://user-images.githubusercontent.com/62923776/117198962-9a8e3a00-ae24-11eb-93f6-168ef7c00e8e.gif' height='500px'/>
