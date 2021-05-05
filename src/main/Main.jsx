@@ -4,6 +4,8 @@ import '../../node_modules/antd/dist/antd.css';
 import { BrowserRouter, useHistory } from 'react-router-dom';
 import Mobile from './Mobile';
 import PC from './PC';
+import { initGAPI } from '../gapi/gmail';
+import GSignIn from '../gapi/GSignIn';
 
 const GlobalStyle = createGlobalStyle`
 html,body{
@@ -37,6 +39,11 @@ const Main = () => {
     const { toright } = state
     const value = { dispatch, toright }
 
+    useEffect(()=>{
+        initGAPI();
+        console.log('initial render');
+    },[]);
+
     return (
         <>
             <GlobalStyle />
@@ -44,6 +51,7 @@ const Main = () => {
                 <BrowserRouter>
                 <PC />
                 <Mobile/>
+                <GSignIn/>
                 </BrowserRouter>
             </MailAppContext.Provider>
         </>
