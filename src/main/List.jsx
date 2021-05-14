@@ -1,5 +1,5 @@
 import { List } from 'antd';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { MailAppContext } from './Main';
 import { MenuOutlined, EditOutlined } from '@ant-design/icons';
@@ -7,6 +7,7 @@ import { useHistory } from 'react-router';
 import { Page, Content, Margin } from '../page/page.style';
 import { listData } from '../gapi/gmail';
 import sampleMail from '../sampledata/sampledata';
+import NewMail from '../mail/NewMail';
 
 export const Header = styled.div`
 width:${({ width }) => width}vw;
@@ -22,7 +23,7 @@ padding:0;
 opacity:0.8;
 `;
 
-const MailBoxName = styled.span`
+export const MailBoxName = styled.span`
 font-size:1.8rem;
 opacity:1;
 `;
@@ -48,10 +49,10 @@ const MailList = ({ width }) => {
     }
     const onClickThread = (index) => {
         dispatch({ type: 'SET_TORIGHT', toright: false });
-        dispatch({type:'SET_READING',reading:index});
+        dispatch({ type: 'SET_READING', reading: index });
         history.push('/MailApp/mail');
     }
-    
+
     let data;
     if (!gSignIn) {//if not signed in, show dummy data
         data = sampleMail;
@@ -60,30 +61,34 @@ const MailList = ({ width }) => {
         data = listData;
     }
 
-    return (
-        <Page width={width} >
-            <Margin />
-            <Content>
-                <List
-                    itemLayout="horizontal"
-                    dataSource={data}
-                    renderItem={(item, index) => (
-                        <List.Item style={{ padding: `0.6rem 1.5rem` }} onClick={()=>onClickThread(index)}>
-                            <List.Item.Meta
-                                title={`[`+item.senter+`] `+item.title} 
-                                description={item.description.slice(0,80)}
-                            />
-                        </List.Item>
-                    )}
-                />
-            </Content>
-            <Header width={width}>
-                <Button onClick={onClickMenu}>{<MenuOutlined />}</Button>
-                <MailBoxName>받은 편지함</MailBoxName>
-                <Button onClick={() => alert('write new email')}>{<EditOutlined />}</Button>
-            </Header>
-        </Page>
+    const [modal, setModal] = useState(false);
 
+    return (
+        <>
+            <Page width={width} >
+                <Margin />
+                <Content>
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={data}
+                        renderItem={(item, index) => (
+                            <List.Item style={{ padding: `0.6rem 1.5rem` }} onClick={() => onClickThread(index)}>
+                                <List.Item.Meta
+                                    title={`[` + item.senter + `] ` + item.title}
+                                    description={item.description.slice(0, 80)}
+                                />
+                            </List.Item>
+                        )}
+                    />
+                </Content>
+                <Header width={width}>
+                    <Button onClick={onClickMenu}>{<MenuOutlined />}</Button>
+                    <MailBoxName>받은 편지함</MailBoxName>
+                    <Button onClick={() => setModal(!modal)}>{<EditOutlined />}</Button>
+                </Header>
+            <NewMail display={modal} setModal={setModal}/>
+            </Page>
+        </>
     );
 }
 
