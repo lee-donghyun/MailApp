@@ -129,6 +129,7 @@ const NewMail = ({ modal, setModal }) => {
         const requestBody = base64Encode(toRef.current.value, subjectRef.current.value, contentRef.current.value);
         console.log(requestBody);
         await sendemail(requestBody);
+        setModal(false);
     }
 
     return (
