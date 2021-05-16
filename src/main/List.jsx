@@ -86,7 +86,7 @@ const MailList = ({ width }) => {
                     <MailBoxName>받은 편지함</MailBoxName>
                     <Button onClick={() => setModal(!modal)}>{<EditOutlined />}</Button>
                 </Header>
-            <NewMail display={modal} setModal={setModal}/>
+            <NewMail display={modal} modal={modal} setModal={setModal}/>
             </Page>
         </>
     );

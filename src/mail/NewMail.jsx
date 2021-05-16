@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, MailBoxName } from "../main/List";
-import { CloseOutlined, SendOutlined, PlusOutlined } from '@ant-design/icons';
-import { Margin } from "../page/page.style";
+import { CloseOutlined, SendOutlined, PlusOutlined, FileAddOutlined } from '@ant-design/icons';
+import { Transition } from "react-transition-group";
 
 const Modal = styled.div`
 position:absolute;
@@ -17,7 +17,7 @@ height:80vh;
 background:white;
 border-radius:3rem;
 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-display:${({display})=>display?'flex':'none'};
+display:${({ display }) => display ? 'flex' : 'none'};
 flex-direction:column;
 `;
 
@@ -53,7 +53,7 @@ padding: 0;
 margin:0;
 `;
 
-const InputAdress = styled.input.attrs({type: 'email',multiple:'any'})`
+const InputAdress = styled.input.attrs({ type: 'email', multiple: 'true' })`
 padding: 0 1rem ;
 margin:0;
 border:none;
@@ -61,11 +61,11 @@ outline:none;
 flex:auto;
 `;
 
-const Input = ({tag}) => {
-    return(
-        <Container>
+const Input = ({ tag }) => {
+    return (
+        <Container as='form'>
             <Tag>{tag} :</Tag>
-            <InputAdress/>
+            <InputAdress />
             <Button>
                 <PlusOutlined />
             </Button>
@@ -73,34 +73,76 @@ const Input = ({tag}) => {
     );
 }
 
-const Content = styled.textarea.attrs({rows:'20'})`
+const Title = () => {
+    return(
+        <Container as='form'>
+            <Tag>제목 :</Tag>
+            <InputAdress type='text' />
+            <Button>
+                <FileAddOutlined />
+            </Button>
+        </Container>
+    );
+}
+
+const Content = styled.textarea`
 font-size:1.5rem;
 resize:none;
 border:none;
 outline:none;
 padding:1rem;
+// flex:auto;
+height:${({height})=>height/10}rem;
+width:100%;
+overflow:hidden;
 `;
 
+const ModalBody = styled.div`
+display:block;
+flex-direction:column;
+flex:auto;
 
-const NewMail = ({display, setModal}) => {
-    return(
+border-radius:3rem;
+overflow-y:scroll;
+`;
+
+const NewMail = ({ display, modal, setModal }) => {
+
+    const [height,setHeight]=useState(500);
+    const resize = (e) => {
+        console.log(e.target.scrollHeight);
+        if(e.target.scrollHeight!== height){
+            setHeight(e.target.scrollHeight);
+            console.log('resized',height);
+        }
+    }
+
+    return (
+        <Transition
+        in={modal}
+        timeout={500}
+        unmountOnExit
+        >
         <Modal display={display}>
             <ModalHeader>
                 <Button onClick={() => setModal(false)}>{<CloseOutlined />}</Button>
                 <MailBoxName>새로운 편지</MailBoxName>
                 <Button onClick={() => setModal(false)}>{<SendOutlined />}</Button>
             </ModalHeader>
-            <Divider/>
-            <Input tag='받는 사람'/>
-            <Divider/>
-            <Input tag='참조'/>
-            <Divider/>
-            <Input tag='숨은 참조'/>
-            <Divider/>
-            <Input tag='제목'/>
-            <Divider/>
-            <Content/>
+            <Divider />
+            <Title />
+            <Divider />
+            <ModalBody>
+                <Input tag='받는 사람' />
+                <Divider />
+                <Input tag='참조' />
+                <Divider />
+                <Input tag='숨은 참조' />
+                <Divider />
+                <Content onChange={resize} height={height}/>
+            </ModalBody>
         </Modal>
+        </Transition>
     );
 }
 
