@@ -29,6 +29,7 @@ opacity:1;
 `;
 
 export const Button = styled.button`
+text-align:center;
 width:6rem;
 font-size:2rem;
 background:none;
@@ -86,7 +87,7 @@ const MailList = ({ width }) => {
                     <MailBoxName>받은 편지함</MailBoxName>
                     <Button onClick={() => setModal(!modal)}>{<EditOutlined />}</Button>
                 </Header>
-            <NewMail display={modal} modal={modal} setModal={setModal}/>
+            <NewMail modal={modal} setModal={setModal}/>
             </Page>
         </>
     );

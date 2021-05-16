@@ -17,8 +17,11 @@ height:80vh;
 background:white;
 border-radius:3rem;
 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-display:${({ display }) => display ? 'flex' : 'none'};
+display:flex;
 flex-direction:column;
+opacity:${({state})=>state==='entering'||state==='entered'?1:0};
+visibility:${({state})=>state==='exited'?'hidden':'visible'};
+transition:0.3s;
 `;
 
 const ModalHeader = styled.div`
@@ -74,12 +77,13 @@ const Input = ({ tag }) => {
 }
 
 const Title = () => {
-    return(
+    return (
         <Container as='form'>
             <Tag>제목 :</Tag>
             <InputAdress type='text' />
-            <Button>
+            <Button as='label' for='file'>
                 <FileAddOutlined />
+                <input type="file" id='file' style={{display:'none'}} />
             </Button>
         </Container>
     );
@@ -92,7 +96,7 @@ border:none;
 outline:none;
 padding:1rem;
 // flex:auto;
-height:${({height})=>height/10}rem;
+height:${({ height }) => height / 10}rem;
 width:100%;
 overflow:hidden;
 `;
@@ -106,42 +110,43 @@ border-radius:3rem;
 overflow-y:scroll;
 `;
 
-const NewMail = ({ display, modal, setModal }) => {
+const NewMail = ({ modal, setModal }) => {
 
-    const [height,setHeight]=useState(500);
+    const [height, setHeight] = useState(500);
     const resize = (e) => {
         console.log(e.target.scrollHeight);
-        if(e.target.scrollHeight!== height){
+        if (e.target.scrollHeight !== height) {
             setHeight(e.target.scrollHeight);
-            console.log('resized',height);
+            console.log('resized', height);
         }
     }
 
     return (
         <Transition
-        in={modal}
-        timeout={500}
-        unmountOnExit
+            in={modal}
+            timeout={300}
         >
-        <Modal display={display}>
-            <ModalHeader>
-                <Button onClick={() => setModal(false)}>{<CloseOutlined />}</Button>
-                <MailBoxName>새로운 편지</MailBoxName>
-                <Button onClick={() => setModal(false)}>{<SendOutlined />}</Button>
-            </ModalHeader>
-            <Divider />
-            <Title />
-            <Divider />
-            <ModalBody>
-                <Input tag='받는 사람' />
-                <Divider />
-                <Input tag='참조' />
-                <Divider />
-                <Input tag='숨은 참조' />
-                <Divider />
-                <Content onChange={resize} height={height}/>
-            </ModalBody>
-        </Modal>
+            {state =>
+                <Modal state={state}>
+                    <ModalHeader>
+                        <Button onClick={() => setModal(false)}>{<CloseOutlined />}</Button>
+                        <MailBoxName>새로운 편지</MailBoxName>
+                        <Button onClick={() => setModal(false)}>{<SendOutlined />}</Button>
+                    </ModalHeader>
+                    <Divider />
+                    <Title />
+                    <Divider />
+                    <ModalBody>
+                        <Input tag='받는 사람' />
+                        <Divider />
+                        <Input tag='참조' />
+                        <Divider />
+                        <Input tag='숨은 참조' />
+                        <Divider />
+                        <Content onChange={resize} height={height} />
+                    </ModalBody>
+                </Modal>
+            }
         </Transition>
     );
 }
