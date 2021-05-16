@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { Button, MailBoxName } from "../main/List";
 import { CloseOutlined, SendOutlined, PlusOutlined, FileAddOutlined } from '@ant-design/icons';
 import { Transition } from "react-transition-group";
+import { base64Encode, sendemail } from "../gapi/gmail";
 
 const Modal = styled.div`
 position:absolute;
@@ -19,8 +20,8 @@ border-radius:3rem;
 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 display:flex;
 flex-direction:column;
-opacity:${({state})=>state==='entering'||state==='entered'?1:0};
-visibility:${({state})=>state==='exited'?'hidden':'visible'};
+opacity:${({ state }) => state === 'entering' || state === 'entered' ? 1 : 0};
+visibility:${({ state }) => state === 'exited' ? 'hidden' : 'visible'};
 transition:0.3s;
 `;
 
@@ -64,11 +65,11 @@ outline:none;
 flex:auto;
 `;
 
-const Input = ({ tag }) => {
+const Input = ({ tag, inputref }) => {
     return (
         <Container as='form'>
             <Tag>{tag} :</Tag>
-            <InputAdress />
+            <InputAdress ref={inputref} />
             <Button>
                 <PlusOutlined />
             </Button>
@@ -76,14 +77,14 @@ const Input = ({ tag }) => {
     );
 }
 
-const Title = () => {
+const Title = ({ inputref }) => {
     return (
         <Container as='form'>
             <Tag>제목 :</Tag>
-            <InputAdress type='text' />
+            <InputAdress type='text' ref={inputref} />
             <Button as='label' for='file'>
                 <FileAddOutlined />
-                <input type="file" id='file' style={{display:'none'}} />
+                <input type="file" id='file' style={{ display: 'none' }} />
             </Button>
         </Container>
     );
@@ -121,6 +122,15 @@ const NewMail = ({ modal, setModal }) => {
         }
     }
 
+    const toRef = useRef(null);
+    const subjectRef = useRef(null);
+    const contentRef = useRef(null);
+    const send = async () => {
+        const requestBody = base64Encode(toRef.current.value, subjectRef.current.value, contentRef.current.value);
+        console.log(requestBody);
+        await sendemail(requestBody);
+    }
+
     return (
         <Transition
             in={modal}
@@ -131,19 +141,19 @@ const NewMail = ({ modal, setModal }) => {
                     <ModalHeader>
                         <Button onClick={() => setModal(false)}>{<CloseOutlined />}</Button>
                         <MailBoxName>새로운 편지</MailBoxName>
-                        <Button onClick={() => setModal(false)}>{<SendOutlined />}</Button>
+                        <Button onClick={send}>{<SendOutlined />}</Button>
                     </ModalHeader>
                     <Divider />
-                    <Title />
+                    <Title inputref={subjectRef} />
                     <Divider />
                     <ModalBody>
-                        <Input tag='받는 사람' />
+                        <Input tag='받는 사람' inputref={toRef} />
                         <Divider />
                         <Input tag='참조' />
                         <Divider />
                         <Input tag='숨은 참조' />
                         <Divider />
-                        <Content onChange={resize} height={height} />
+                        <Content onChange={resize} height={height} ref={contentRef} />
                     </ModalBody>
                 </Modal>
             }

@@ -76,11 +76,36 @@ export const updateListData = async () => {
             senter: senter,
             date: date,
             description: description,
-            content:content,
+            content: content,
         });
         console.log('pushed one');
     }
     for (const id of inbox) {
         await read(id);
     }
+}
+
+
+export const base64Encode = (to, subject, content) => {
+
+    const rawdata = btoa(`To: ${to}
+    Subject: ${subject}
+    
+    ${content}`);
+
+    return {
+        "raw": rawdata,
+    }
+}
+
+export const sendemail = async(requestbody) => {
+
+    const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/pocketssofat@gmail.com/messages/send', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: requestbody,
+    });
+    console.log(response);
 }
